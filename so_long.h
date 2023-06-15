@@ -67,7 +67,9 @@ void	render_map(t_data *game);
 char	next_tile(t_data *game, int direction);
 int		ft_printf(const char *flag_string, ...);
 int	close_game(t_data *game);
+int	read_map(t_data *game);
 int	check_map(t_data *game);
+int	flood_fill(t_data *game);
 
 
 #endif

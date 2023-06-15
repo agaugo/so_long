@@ -45,6 +45,7 @@ void	parse_map(int fd, t_data *game, int win_width, int win_height)
 	int		col_i;
 
 	game->player.count = 0;
+	game->map.validity.player_count = 0;
 	map = (char **)malloc(sizeof(char *) * win_height + 1);
 	if (!map)
 		return ;
@@ -61,6 +62,7 @@ void	parse_map(int fd, t_data *game, int win_width, int win_height)
 			{
 				game->player.x = row_i;
 				game->player.y = col_i;
+				game->map.validity.player_count++;
 				map[col_i][row_i] = '0';
 			}
 			else
@@ -74,14 +76,13 @@ void	parse_map(int fd, t_data *game, int win_width, int win_height)
 	game->map.map = map;
 	game->map.map_height = win_height;
 	game->map.map_width = win_width;
-	// if (!check_map(map))
-	// {
-	// 	ft_printf("%s\n", "Error: Invalid Map. ");
-	// 	close_game(game);
-	// }
+	if (!read_map(game))
+	{
+		ft_printf("%s\n", "Error: Invalid Map. ");
+		close_game(game);
+	}
 	render_map(game);
 }
-
 
 void	load_imgs(t_data *game)
 {
@@ -94,7 +95,6 @@ void	load_imgs(t_data *game)
 	game->imgs.img_goblin = mlx_xpm_file_to_image(game->mlx, "./textures/goblin.xpm", &null_w, &null_h);
 	game->imgs.img_exit = mlx_xpm_file_to_image(game->mlx, "./textures/exit.xpm", &null_w, &null_h);
 }
-
 
 int	main(int argc, char *argv[])
 {

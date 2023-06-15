@@ -12,7 +12,40 @@ needs to check:
 
 #include "../so_long.h"
 
-// int	check_map(t_data *game)
+// int	flood_fill(t_data *game)
 // {
 
 // }
+
+int	check_map(t_data *game)
+{
+	if (game->map.validity.player_count != 1 ||
+		game->map.validity.goblin_count < 1 ||
+		game->map.validity.exit_count != 1)
+		return (0);
+	return (1);
+}
+
+int	read_map(t_data *game)
+{
+	int	mh;
+	int	mw;
+
+	mh = 0;
+	game->map.validity.goblin_count = 0;
+	game->map.validity.exit_count = 0;
+	while (mh < game->map.map_height)
+	{
+		mw = 0;
+		while (mw < game->map.map_width)
+		{
+			if (game->map.map[mh][mw] == 'E')
+				game->map.validity.exit_count++;
+			else if (game->map.map[mh][mw] == 'C')
+				game->map.validity.goblin_count++;
+			mw++;
+		}
+		mh++;
+	}
+	return (check_map(game));
+}
