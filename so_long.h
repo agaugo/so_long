@@ -6,9 +6,20 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+
 // **** STRUCTS **** //
 
 # define IMG_SIZE 32
+
+typedef struct s_validity {
+	int player_count;
+	int	exit_count;
+	int	goblin_count;
+} t_validity;
+typedef struct s_direction{
+	int dx;
+	int dy;
+} t_direction;
 
 typedef struct s_player {
 	int	x;
@@ -20,6 +31,8 @@ typedef	struct s_map {
 	int		map_height;
 	int		map_width;
 	char	**map;
+	t_validity	validity;
+
 } t_map;
 
 typedef struct s_imgs {
@@ -51,6 +64,10 @@ void	free_game(t_data *game);
 void	print2DArray(t_data *game);
 void	handle_movement(t_data  *game, int direction);
 void	render_map(t_data *game);
+char	next_tile(t_data *game, int direction);
+int		ft_printf(const char *flag_string, ...);
+int	close_game(t_data *game);
+int	check_map(t_data *game);
 
 
 #endif
