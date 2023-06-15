@@ -13,14 +13,14 @@
 NAME		= so_long
 MLX			= mlx/libmlx.a
 CC			= gcc
-CC_FLAGS	= -Wall -Wextra -Werror
+CC_FLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
 MLX_FLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR 	= src
 OBJ_DIR 	= obj
 GNL_DIR 	= get_next_line
 
-SRC			= tools.c so_long.c hooks.c 
+SRC			= tools.c so_long.c hooks.c
 GNL_SRC 	= get_next_line.c get_next_line_utils.c
 
 SRCS		= $(addprefix $(SRC_DIR)/, $(SRC)) $(addprefix $(GNL_DIR)/, $(GNL_SRC))

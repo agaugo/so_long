@@ -1,6 +1,51 @@
 #include "../get_next_line/get_next_line.h"
 #include "../so_long.h"
 
+void	handle_movement(t_data  *game, int direction)
+{
+	if (direction == 1)
+	{
+		if (game->map.map[game->player.y -1][game->player.x] == '0'
+			|| game->map.map[game->player.y -1][game->player.x] == 'C') 
+		{
+			game->player.y -= 1;
+			game->player.count += 1;
+			render_map(game);
+		}
+	}
+	else if (direction == 2)
+	{
+		if (game->map.map[game->player.y][game->player.x - 1] == '0'
+			|| game->map.map[game->player.y][game->player.x -1] == 'C') 
+		{
+			game->player.x -= 1;
+			game->player.count += 1;
+			render_map(game);
+		}
+	}
+	
+	else if (direction == 3)
+	{
+		if (game->map.map[game->player.y + 1][game->player.x] == '0'
+			|| game->map.map[game->player.y + 1][game->player.x] == 'C') 
+		{
+			game->player.y += 1;
+			game->player.count += 1;
+			render_map(game);
+		}
+	}
+	else if (direction == 4)
+	{
+		if (game->map.map[game->player.y][game->player.x + 1] == '0'
+			|| game->map.map[game->player.y][game->player.x + 1] == 'C') 
+		{	
+			game->player.x += 1;
+			game->player.count += 1;
+			render_map(game);
+		}	
+	}
+}
+
 void	render_map(t_data *game)
 {
 	int	row_i;
@@ -30,7 +75,6 @@ void	render_map(t_data *game)
 	}
 }
 
-//cordinates go from top left to bottom right. i.e. (0, 0) is topmost left corner!!!!
 void	parse_map(int fd, t_data *game, int win_width, int win_height)
 {
 	char	**map;
@@ -38,25 +82,27 @@ void	parse_map(int fd, t_data *game, int win_width, int win_height)
 	int		row_i;
 	int		col_i;
 
-	map = (char **)malloc(sizeof(char *) * win_height);
+	game->player.count = 0;
+	map = (char **)malloc(sizeof(char *) * win_height + 1);
 	if (!map)
 		return ;
 	col_i = 0;
 	while ((line = get_next_line(fd)) && col_i < win_height)
 	{
 		row_i = 0;
-		map[col_i] = (char *)malloc((sizeof(char) * win_width) + 1);
+		map[col_i] = (char *)malloc(sizeof(char) * win_width + 1);
 		if (!map[col_i])
 			return ;
-		while (line[row_i] != '\0')
+		while (line[row_i] != '\0' && line[row_i] != '\n')
 		{
-			map[col_i][row_i] = line[row_i];
 			if (line[row_i] == 'P')
 			{
 				game->player.x = row_i;
 				game->player.y = col_i;
 				map[col_i][row_i] = '0';
 			}
+			else
+				map[col_i][row_i] = line[row_i];
 			row_i++;
 		}
 		map[col_i][row_i] = '\0';
@@ -68,6 +114,7 @@ void	parse_map(int fd, t_data *game, int win_width, int win_height)
 	game->map.map_width = win_width;
 	render_map(game);
 }
+
 
 void	load_imgs(t_data *game)
 {
@@ -81,6 +128,7 @@ void	load_imgs(t_data *game)
 	game->imgs.img_exit = mlx_xpm_file_to_image(game->mlx, "./textures/exit.xpm", &null_w, &null_h);
 }
 
+
 int	main(int argc, char *argv[])
 {
 	t_data	game;
@@ -89,6 +137,8 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (0);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, (15 * IMG_SIZE), (5 * IMG_SIZE), "so_long");
 	load_imgs(&game);

@@ -13,6 +13,7 @@
 typedef struct s_player {
 	int	x;
 	int	y;
+	int	count;
 } t_player;
 
 typedef	struct s_map {
@@ -47,7 +48,9 @@ int	key_hook(int keycode, t_data *game);
 // int	key_hook(int keycode, t_data *game__attribute__((unused)));
 int		ft_strcmp(const char *str1, const char *str2);
 void	free_game(t_data *game);
-void print2DArray(t_data *game);
+void	print2DArray(t_data *game);
+void	handle_movement(t_data  *game, int direction);
+void	render_map(t_data *game);
 
 
 #endif
