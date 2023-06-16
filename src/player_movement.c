@@ -1,19 +1,33 @@
-#include "../so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_movement.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 12:11:04 by hflohil-          #+#    #+#             */
+/*   Updated: 2023/06/16 12:14:09 by hflohil-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	move_player(t_data	*game, t_direction *direction)
+#include "../include/so_long.h"
+
+void	move_player(t_data *game, t_direction *direction)
 {
 	int	new_x;
 	int	new_y;
 
 	new_x = game->player.x + direction->dx;
 	new_y = game->player.y + direction->dy;
-	if (game->map.map[new_y][new_x] == 'E' && game->map.validity.goblin_count == 0)
+	if (game->map.map[new_y][new_x] == 'E'
+		&& game->map.validity.goblin_count == 0)
 	{
 		free_game(game);
 		ft_printf("FINAL SCORE: %d\n", game->player.count);
 		exit(0);
 	}
-	if (game->map.map[new_y][new_x] == '0' || game->map.map[new_y][new_x] == 'C')
+	if (game->map.map[new_y][new_x] == '0'
+		|| game->map.map[new_y][new_x] == 'C')
 	{
 		if (game->map.map[new_y][new_x] == 'C')
 			game->map.map[new_y][new_x] = '0';
@@ -25,17 +39,17 @@ void	move_player(t_data	*game, t_direction *direction)
 	}
 }
 
-void	handle_movement(t_data  *game, int direction)
+void	handle_movement(t_data *game, int direction)
 {
 	t_direction	up;
 	t_direction	left;
-	t_direction down;
+	t_direction	down;
 	t_direction	right;
 
 	up.dx = 0;
 	up.dy = -1;
 	left.dx = -1;
-	left.dy = 0;	
+	left.dy = 0;
 	down.dx = 0;
 	down.dy = 1;
 	right.dx = 1;

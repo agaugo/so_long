@@ -2,7 +2,7 @@
 # define SO_LONG_H
 
 
-# include "mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -57,19 +57,17 @@ typedef	struct	s_data {
 int		main(int argc, char *argv[]);
 void	parse_map(int fd, t_data *game, int win_width, int win_height);
 void	player_move(int fd, t_data *game);
-int	key_hook(int keycode, t_data *game);
-// int	key_hook(int keycode, t_data *game__attribute__((unused)));
+int     key_hook(int keycode, t_data *game);
 int		ft_strcmp(const char *str1, const char *str2);
 void	free_game(t_data *game);
-void	print2DArray(t_data *game);
 void	handle_movement(t_data  *game, int direction);
 void	render_map(t_data *game);
 char	next_tile(t_data *game, int direction);
 int		ft_printf(const char *flag_string, ...);
-int	close_game(t_data *game);
-int	read_map(t_data *game);
-int	check_map(t_data *game);
-int	flood_fill(t_data *game);
-
+int     close_game(t_data *game);
+int     read_map(t_data *game);
+int     check_map(t_data *game);
+void    flood_fill(t_data *game, char **map, int x, int y);
+int     check_path(t_data *game, char **map);
 
 #endif
