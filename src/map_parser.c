@@ -2,7 +2,7 @@
 #include "../include/so_long.h"
 #include "../get_next_line/get_next_line.h"
 
-
+//refactored versions
 char **allocate_map_memory(t_data *game, char **map, int col_i)
 {
     if (game->map.map_height <= col_i)
