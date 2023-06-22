@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:11:04 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/16 12:14:09 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:49:41 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	handle_movement(t_data *game, int direction)
 	down.dy = 1;
 	right.dx = 1;
 	right.dy = 0;
-
 	if (direction == 1)
 		move_player(game, &up);
 	else if (direction == 2)

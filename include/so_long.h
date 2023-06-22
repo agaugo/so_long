@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 15:21:07 by hflohil-          #+#    #+#             */
+/*   Updated: 2023/06/22 15:38:48 by hflohil-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
 
 # include "../mlx/mlx.h"
 # include <fcntl.h>
@@ -11,70 +22,81 @@
 
 # define IMG_SIZE 32
 
-typedef struct s_validity {
-	int player_count;
+typedef struct s_validity
+{
+	int	player_count;
 	int	exit_count;
 	int	goblin_count;
-} t_validity;
-typedef struct s_direction{
-	int dx;
-	int dy;
-} t_direction;
+}		t_validity;
 
-typedef struct s_player {
+typedef struct s_direction
+{
+	int	dx;
+	int	dy;
+}		t_direction;
+
+typedef struct s_player
+{
 	int	x;
 	int	y;
 	int	count;
-} t_player;
+}		t_player;
 
-typedef	struct s_map {
-	int		map_height;
-	int		map_width;
-	char	**map;
+typedef struct s_map
+{
+	int			map_height;
+	int			map_width;
+	char		**map;
 	t_validity	validity;
 
-} t_map;
+}				t_map;
 
-typedef struct s_imgs {
-	void		*img_tile;
-	void		*img_wall;
-	void		*img_hero;
-	void		*img_goblin;
-	void		*img_exit;
-} t_imgs;
+typedef struct s_imgs
+{
+	void	*img_tile;
+	void	*img_wall;
+	void	*img_hero;
+	void	*img_goblin;
+	void	*img_exit;
+}			t_imgs;
 
-typedef struct s_dimensions {
-    int height;
-    int width;
+typedef struct s_dimensions
+{
+	int	height;
+	int	width;
 
-} t_dimensions;
+}		t_dimensions;
 
-typedef	struct	s_data {
+typedef struct s_data
+{
 	void		*mlx;
 	void		*win;
 	void		*img;
 	t_imgs		imgs;
 	t_map		map;
 	t_player	player;
-}	t_data;
+	int			error;
+}				t_data;
 
 //  **** CORE **** //
-
-int		main(int argc, char *argv[]);
-void	parse_map(int fd, t_data *game);
-int     key_hook(int keycode, t_data *game);
-void	free_game(t_data *game);
-void	handle_movement(t_data  *game, int direction);
-void	render_map(t_data *game);
-int		ft_printf(const char *flag_string, ...);
-int     close_game(t_data *game);
-int     read_map(t_data *game);
-int     check_map(t_data *game);
-void    flood_fill(t_data *game, char **map, int x, int y);
-int     check_path(t_data *game, char **map);
-void    load_imgs(t_data *game);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-char    **resize(char **ptr, int old_size, int new_size);
-void    invalid_map(t_data *game);
+int				main(int argc, char *argv[]);
+void			parse_map(int fd, t_data *game);
+int				key_hook(int keycode, t_data *game);
+void			free_game(t_data *game);
+void			handle_movement(t_data *game, int direction);
+void			render_map(t_data *game);
+int				ft_printf(const char *flag_string, ...);
+int				close_game(t_data *game);
+int				read_map(t_data *game);
+int				check_map(t_data *game);
+void			flood_fill(t_data *game, char **map, int x, int y);
+int				check_path(t_data *game, char **map);
+void			load_imgs(t_data *game);
+void			*ft_memcpy(void *dst, const void *src, size_t n);
+char			**resize(char **ptr, int old_size, int new_size);
+void			invalid_map(t_data *game);
+void			save_lines(t_data *game);
+void			save_lines_two(t_data *game, char **map);
+void			assign_image(t_data *game, int row_i, int col_i);
 
 #endif
