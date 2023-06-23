@@ -6,18 +6,11 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:10:50 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/22 14:45:57 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:03:36 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line/get_next_line.h"
 #include "../include/so_long.h"
-
-void	invalid_map(t_data *game)
-{
-	ft_printf("Error: Invalid Map.\n");
-	close_game(game);
-}
 
 char	**resize(char **ptr, int old_size, int new_size)
 {

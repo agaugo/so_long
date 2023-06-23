@@ -22,9 +22,8 @@ void	move_player(t_data *game, t_direction *direction)
 	if (game->map.map[new_y][new_x] == 'E'
 		&& game->map.validity.goblin_count == 0)
 	{
-		free_game(game);
-		ft_printf("FINAL SCORE: %d\n", game->player.count);
-		exit(0);
+        ft_printf("FINAL SCORE: %d\n", game->player.count);
+        close_game(game);
 	}
 	if (game->map.map[new_y][new_x] == '0'
 		|| game->map.map[new_y][new_x] == 'C')

@@ -1,15 +1,28 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/23 15:44:47 by hflohil-          #+#    #+#              #
+#    Updated: 2023/06/23 16:04:22 by hflohil-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
 MLX = mlx/libmlx.a
 PRINTF = ft_printf/libftprintf.a
 CC = gcc
-CC_FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CC_FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+CC_FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR = src
 OBJ_DIR = obj
 GNL_DIR = get_next_line
 
-SRC = render_map.c map_parser.c free_and_utils.c map_checker.c so_long.c mlx_hooks.c player_movement.c
+SRC = misc_utils.c render_map.c map_parser.c memory_utils.c map_checker.c so_long.c mlx_hooks.c player_movement.c
 GNL_SRC = get_next_line.c get_next_line_utils.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC)) $(addprefix $(GNL_DIR)/, $(GNL_SRC))

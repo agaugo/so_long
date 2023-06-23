@@ -36,8 +36,6 @@ void	render_map(t_data *game)
 
 	col_i = 0;
 	game->map.validity.goblin_count = 0;
-	game->map.validity.exit_count = 0;
-	game->map.validity.player_count = 0;
 	while (col_i < game->map.map_height)
 	{
 		row_i = 0;
@@ -58,13 +56,13 @@ void	load_imgs(t_data *game)
 	int	null_h;
 
 	game->imgs.img_tile = mlx_xpm_file_to_image(game->mlx,
-			"./textures/tile.xpm", &null_w, &null_h);
+		"./textures/tile.xpm", &null_w, &null_h);
 	game->imgs.img_wall = mlx_xpm_file_to_image(game->mlx,
-			"./textures/wall.xpm", &null_w, &null_h);
+		"./textures/wall.xpm", &null_w, &null_h);
 	game->imgs.img_hero = mlx_xpm_file_to_image(game->mlx,
-			"./textures/hero.xpm", &null_w, &null_h);
+		"./textures/hero.xpm", &null_w, &null_h);
 	game->imgs.img_goblin = mlx_xpm_file_to_image(game->mlx,
-			"./textures/goblin.xpm", &null_w, &null_h);
+		"./textures/goblin.xpm", &null_w, &null_h);
 	game->imgs.img_exit = mlx_xpm_file_to_image(game->mlx,
-			"./textures/exit.xpm", &null_w, &null_h);
+		"./textures/exit.xpm", &null_w, &null_h);
 }

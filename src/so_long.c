@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:11:11 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/22 14:54:47 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:05:11 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@ int	main(int argc, char *argv[])
 {
 	t_data	game;
 	int		fd;
+	int		len;
 
 	if (argc != 2)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
+	len = (int)ft_strlen(argv[1]);
+	if (fd == -1 || ft_strncmp(&argv[1][len - 4], ".ber", 4))
+	{
+		ft_printf("Error: File not found or incorrect file extension.\n");
 		return (0);
+	}
 	game.mlx = mlx_init();
 	game.win = NULL;
 	load_imgs(&game);
