@@ -100,5 +100,6 @@ void			save_lines(t_data *game);
 void			save_lines_two(t_data *game, char **map);
 void			assign_image(t_data *game, int row_i, int col_i);
 int             ft_strncmp(const char *s1, const char *s2, size_t n);
+char            **allocate_map_memory(t_data *game, char **map, int col_i, char *line);
 
 #endif

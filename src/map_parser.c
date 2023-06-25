@@ -13,14 +13,14 @@
 #include "../get_next_line/get_next_line.h"
 #include "../include/so_long.h"
 
-char	**allocate_map_memory(t_data *game, char **map, int col_i)
+char	**allocate_map_memory(t_data *game, char **map, int col_i, char *line)
 {
 	if (game->map.map_height <= col_i)
 	{
 		map = resize(map, game->map.map_height, game->map.map_height + 1);
 		game->map.map_height++;
 	}
-	map[col_i] = (char *)malloc(sizeof(char) * (game->map.map_width + 1));
+	map[col_i] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (!map[col_i])
 		return (NULL);
 	return (map);
@@ -79,7 +79,7 @@ void	parse_map(int fd, t_data *game)
 	game->map.map_width = (int)ft_strlen(line);
 	while (line)
 	{
-		map = allocate_map_memory(game, map, col_i);
+		map = allocate_map_memory(game, map, col_i, line);
 		if (!map)
 			return ;
 		parse_and_validate_line(game, map, line, col_i);

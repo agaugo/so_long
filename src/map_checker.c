@@ -32,20 +32,6 @@ int check_border(t_data *game)
         i++;
     }
     return (1);
-;}
-
-void	flood_fill(t_data *game, char **map, int y, int x)
-{
-	if (y < 0 || y >= game->map.map_height || x < 0 || x >= game->map.map_width
-		|| game->map.map[y][x] == '1')
-		return ;
-	if (map[y][x] == 'V')
-		return ;
-	map[y][x] = 'V';
-	flood_fill(game, map, y + 1, x);
-	flood_fill(game, map, y - 1, x);
-	flood_fill(game, map, y, x + 1);
-	flood_fill(game, map, y, x - 1);
 }
 
 char	**copy_map(t_data *game)
@@ -72,7 +58,21 @@ char	**copy_map(t_data *game)
 	return (map);
 }
 
-int	check_path(t_data *game, char **map)
+void	flood_fill(t_data *game, char **map, int y, int x)
+{
+    if (y < 0 || y >= game->map.map_height || x < 0 || x >= game->map.map_width
+        || game->map.map[y][x] == '1')
+        return ;
+    if (map[y][x] == 'V' || map[y][x] == 'E')
+        return ;
+    map[y][x] = 'V';
+    flood_fill(game, map, y + 1, x);
+    flood_fill(game, map, y - 1, x);
+    flood_fill(game, map, y, x + 1);
+    flood_fill(game, map, y, x - 1);
+}
+
+int check_path(t_data *game, char **map)
 {
 	int	y;
 	int	x;
@@ -85,10 +85,17 @@ int	check_path(t_data *game, char **map)
 		x = 0;
 		while (x < game->map.map_width)
 		{
-			if (map[y][x] == 'C' || map[y][x] == 'E')
+            printf("%c", map[y][x]);
+			if (map[y][x] == 'C')
 				return (0);
+            else if (map[y][x] == 'E')
+            {
+                if (map[y][x + 1] != 'V' && map[y][x - 1] != 'V' && map[y + 1][x] != 'V' && map[y - 1][x])
+                    return (0);
+            }
 			x++;
 		}
+        printf("\n");
 		y++;
 	}
 	return (1);
