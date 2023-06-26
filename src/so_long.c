@@ -6,32 +6,41 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:11:11 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/23 16:05:11 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:03:03 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../get_next_line/get_next_line.h"
 #include "../include/so_long.h"
 
+int	read_error(int id)
+{
+	if (id == 1)
+		ft_printf("Error: File not found or incorrect file extension.\n");
+	else if (id == 2)
+		ft_printf("Error: Empty File.\n");
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	game;
 	int		fd;
 	int		len;
+	int		x;
 
 	if (argc != 2)
 		return (0);
 	fd = open(argv[1], O_RDONLY);
 	len = (int)ft_strlen(argv[1]);
 	if (fd == -1 || ft_strncmp(&argv[1][len - 4], ".ber", 4))
-	{
-		ft_printf("Error: File not found or incorrect file extension.\n");
-		return (0);
-	}
+		return (read_error(1));
 	game.mlx = mlx_init();
 	game.win = NULL;
 	load_imgs(&game);
-	parse_map(fd, &game);
+	x = parse_map(fd, &game);
+	if (x == -1)
+		return (read_error(2));
 	game.win = mlx_new_window(game.mlx, (game.map.map_width * IMG_SIZE),
 			(game.map.map_height * IMG_SIZE), "so_long");
 	render_map(&game);

@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:46:02 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/26 15:18:06 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:02:50 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ void	parse_and_validate_line(t_data *game, char **map, char *line, int col_i)
 	row_i++;
 	if (row_i != game->map.map_width && game->error == 1)
 		game->error = 0;
+	free(line);
 }
 
 void	save_lines(t_data *game)
 {
+	game->error = 1;
 	game->player.count = 0;
 	game->map.validity.player_count = 0;
 	game->map.map_height = 1;
@@ -64,31 +66,32 @@ void	save_lines_two(t_data *game, char **map)
 	game->map.map = map;
 }
 
-void	parse_map(int fd, t_data *game)
+int	parse_map(int fd, t_data *game)
 {
 	char	**map;
 	char	*line;
 	int		col_i;
 
 	col_i = 0;
-	game->error = 1;
 	save_lines(game);
+	line = get_next_line(fd);
+	if (line == NULL)
+		return (-1);
 	map = (char **)malloc(sizeof(char *) * (game->map.map_height + 1));
 	if (!map)
-		return ;
-	line = get_next_line(fd);
+		return (0);
 	game->map.map_width = (int)ft_strlen(line);
 	while (line)
 	{
 		map = allocate_map_memory(game, map, col_i, line);
 		if (!map)
-			return ;
+			return (0);
 		parse_and_validate_line(game, map, line, col_i);
-		free(line);
 		col_i++;
 		line = get_next_line(fd);
 	}
 	save_lines_two(game, map);
 	if (!read_map(game) || game->error == 0)
 		invalid_map(game);
+	return (1);
 }

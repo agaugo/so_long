@@ -47,7 +47,6 @@ int	close_game(t_data *game)
 	if (game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);
 	free_map(game->map.map);
-	system("leaks so_long");
 	exit(0);
 }
 
