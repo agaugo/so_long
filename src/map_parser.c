@@ -84,6 +84,8 @@ void	parse_map(int fd, t_data *game)
 			return ;
 		parse_and_validate_line(game, map, line, col_i);
 		free(line);
+        if (game->error == 0)
+            invalid_map(game);
 		col_i++;
 		line = get_next_line(fd);
 	}

@@ -15,7 +15,6 @@ MLX = mlx/libmlx.a
 PRINTF = ft_printf/libftprintf.a
 CC = gcc
 CC_FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-CC_FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR = src

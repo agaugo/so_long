@@ -19,7 +19,7 @@ char	**resize(char **ptr, int old_size, int new_size)
 	new_ptr = malloc(sizeof(char *) * new_size);
 	if (!new_ptr)
 		return (NULL);
-	ft_memcpy(new_ptr, ptr, sizeof(char *) * old_size);
+    ft_memcpy(new_ptr, ptr, sizeof(char *) * old_size);
 	free(ptr);
 	return (new_ptr);
 }
@@ -44,9 +44,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 int	close_game(t_data *game)
 {
-	if (game->win != NULL)
+    if (game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);
-	free_game(game);
+//    free_game(game);
 	exit(0);
 }
 
