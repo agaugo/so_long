@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:44:32 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/22 15:38:10 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:15:10 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	load_imgs(t_data *game)
 	int	null_h;
 
 	game->imgs.img_tile = mlx_xpm_file_to_image(game->mlx,
-		"./textures/tile.xpm", &null_w, &null_h);
+			"./textures/tile.xpm", &null_w, &null_h);
 	game->imgs.img_wall = mlx_xpm_file_to_image(game->mlx,
-		"./textures/wall.xpm", &null_w, &null_h);
+			"./textures/wall.xpm", &null_w, &null_h);
 	game->imgs.img_hero = mlx_xpm_file_to_image(game->mlx,
-		"./textures/hero.xpm", &null_w, &null_h);
+			"./textures/hero.xpm", &null_w, &null_h);
 	game->imgs.img_goblin = mlx_xpm_file_to_image(game->mlx,
-		"./textures/goblin.xpm", &null_w, &null_h);
+			"./textures/goblin.xpm", &null_w, &null_h);
 	game->imgs.img_exit = mlx_xpm_file_to_image(game->mlx,
-		"./textures/exit.xpm", &null_w, &null_h);
+			"./textures/exit.xpm", &null_w, &null_h);
 }

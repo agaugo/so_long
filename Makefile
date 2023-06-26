@@ -15,7 +15,6 @@ MLX = mlx/libmlx.a
 PRINTF = ft_printf/libftprintf.a
 CC = gcc
 CC_FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-CC_FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR = src
@@ -45,8 +44,8 @@ $(OBJ_DIR)/get_next_line/%.o: $(GNL_DIR)/%.c
 	@$(CC) $(CC_FLAGS) -c $< -o $@
 
 clean:
-	@$(MAKE) clean -C mlx > /dev/null 2>&1
-	@$(MAKE) clean -C ft_printf > /dev/null 2>&1
+	@$(MAKE) clean -C mlx > /dev/null
+	@$(MAKE) clean -C ft_printf > /dev/null
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
