@@ -46,19 +46,20 @@ int	close_game(t_data *game)
 {
     if (game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);
-//    free_game(game);
+    free_map(game->map.map);
+    system("leaks so_long");
 	exit(0);
 }
 
-void	free_game(t_data *game)
+void    free_map(char **map)
 {
-	int	col_i;
+    int i;
 
-	col_i = 0;
-	while (col_i < game->map.map_height)
-	{
-		free(game->map.map[col_i]);
-		col_i++;
-	}
-	free(game->map.map);
+    i = 0;
+    while (map[i] != NULL)
+    {
+        free(map[i]);
+        i++;
+    }
+    free(map);
 }

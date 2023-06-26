@@ -40,22 +40,24 @@ char	**copy_map(t_data *game)
 	int		x;
 	char	**map;
 
-	map = (char **)malloc(sizeof(char *) * game->map.map_height + 1);
+	map = (char **)malloc((sizeof(char *) * (game->map.map_height + 1)));
 	if (!map)
 		return (NULL);
 	y = 0;
 	while (y < game->map.map_height)
 	{
 		x = 0;
-		map[y] = (char *)malloc(sizeof(char) * game->map.map_width + 1);
+		map[y] = (char *)malloc(sizeof(char) * (game->map.map_width + 1));
 		while (x < game->map.map_width)
 		{
 			map[y][x] = game->map.map[y][x];
 			x++;
 		}
+        map[y][x] = '\0';
 		y++;
 	}
-	return (map);
+    map[y] = NULL;
+    return (map);
 }
 
 void	flood_fill(t_data *game, char **map, int y, int x)
@@ -85,7 +87,6 @@ int check_path(t_data *game, char **map)
 		x = 0;
 		while (x < game->map.map_width)
 		{
-            printf("%c", map[y][x]);
 			if (map[y][x] == 'C')
 				return (0);
             else if (map[y][x] == 'E')
@@ -95,7 +96,6 @@ int check_path(t_data *game, char **map)
             }
 			x++;
 		}
-        printf("\n");
 		y++;
 	}
 	return (1);
@@ -105,14 +105,18 @@ int	check_map(t_data *game)
 {
 	char	**map_copy;
 
-	map_copy = copy_map(game);
 	if (game->map.validity.player_count != 1
 		|| game->map.validity.goblin_count < 1
 		|| game->map.validity.exit_count != 1
         || game->map.validity.alien_chars != 0)
 		return (0);
-	if (!check_path(game, map_copy))
-		return (0);
+    map_copy = copy_map(game);
+    if (!check_path(game, map_copy))
+    {
+        free_map(map_copy);
+        return (0);
+    }
+    free_map(map_copy);
     if (!check_border(game))
         return (0);
 	return (1);

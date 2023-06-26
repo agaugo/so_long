@@ -17,12 +17,13 @@ char	**allocate_map_memory(t_data *game, char **map, int col_i, char *line)
 {
 	if (game->map.map_height <= col_i)
 	{
-		map = resize(map, game->map.map_height, game->map.map_height + 1);
+		map = resize(map, game->map.map_height, game->map.map_height + 2);
 		game->map.map_height++;
 	}
 	map[col_i] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (!map[col_i])
 		return (NULL);
+    map[game->map.map_height] = NULL;
 	return (map);
 }
 
@@ -84,8 +85,6 @@ void	parse_map(int fd, t_data *game)
 			return ;
 		parse_and_validate_line(game, map, line, col_i);
 		free(line);
-        if (game->error == 0)
-            invalid_map(game);
 		col_i++;
 		line = get_next_line(fd);
 	}
