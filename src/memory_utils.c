@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory_utils.c                                     :+:      :+:    :+:   */
+/*   free_and_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:10:50 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/26 13:14:12 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/23 16:03:36 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,4 @@ void	free_game(t_data *game)
 		col_i++;
 	}
 	free(game->map.map);
-}
-
-char	**copy_map(t_data *game)
-{
-	int		y;
-	int		x;
-	char	**map;
-
-	map = (char **)malloc(sizeof(char *) * game->map.map_height + 1);
-	if (!map)
-		return (NULL);
-	y = 0;
-	while (y < game->map.map_height)
-	{
-		x = 0;
-		map[y] = (char *)malloc(sizeof(char) * game->map.map_width + 1);
-		while (x < game->map.map_width)
-		{
-			map[y][x] = game->map.map[y][x];
-			x++;
-		}
-		y++;
-	}
-	return (map);
 }

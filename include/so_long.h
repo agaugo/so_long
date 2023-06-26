@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:21:07 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/26 13:15:40 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:38:48 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,24 @@
 
 typedef struct s_validity
 {
-	int			player_count;
-	int			exit_count;
-	int			goblin_count;
-	int			alien_chars;
-}				t_validity;
+	int	player_count;
+	int	exit_count;
+	int	goblin_count;
+    int alien_chars;
+}		t_validity;
 
 typedef struct s_direction
 {
-	int			dx;
-	int			dy;
-}				t_direction;
+	int	dx;
+	int	dy;
+}		t_direction;
 
 typedef struct s_player
 {
-	int			x;
-	int			y;
-	int			count;
-}				t_player;
+	int	x;
+	int	y;
+	int	count;
+}		t_player;
 
 typedef struct s_map
 {
@@ -54,19 +54,19 @@ typedef struct s_map
 
 typedef struct s_imgs
 {
-	void		*img_tile;
-	void		*img_wall;
-	void		*img_hero;
-	void		*img_goblin;
-	void		*img_exit;
-}				t_imgs;
+	void	*img_tile;
+	void	*img_wall;
+	void	*img_hero;
+	void	*img_goblin;
+	void	*img_exit;
+}			t_imgs;
 
 typedef struct s_dimensions
 {
-	int			height;
-	int			width;
+	int	height;
+	int	width;
 
-}				t_dimensions;
+}		t_dimensions;
 
 typedef struct s_data
 {
@@ -99,9 +99,7 @@ void			invalid_map(t_data *game);
 void			save_lines(t_data *game);
 void			save_lines_two(t_data *game, char **map);
 void			assign_image(t_data *game, int row_i, int col_i);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-char			**allocate_map_memory(t_data *game, char **map, int col_i,
-					char *line);
-char			**copy_map(t_data *game);
+int             ft_strncmp(const char *s1, const char *s2, size_t n);
+char            **allocate_map_memory(t_data *game, char **map, int col_i, char *line);
 
 #endif
