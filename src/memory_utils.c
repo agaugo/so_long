@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_utils.c                                   :+:      :+:    :+:   */
+/*   memory_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:10:50 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/23 16:03:36 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:18:13 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**resize(char **ptr, int old_size, int new_size)
 	new_ptr = malloc(sizeof(char *) * new_size);
 	if (!new_ptr)
 		return (NULL);
-    ft_memcpy(new_ptr, ptr, sizeof(char *) * old_size);
+	ft_memcpy(new_ptr, ptr, sizeof(char *) * old_size);
 	free(ptr);
 	return (new_ptr);
 }
@@ -44,22 +44,22 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 int	close_game(t_data *game)
 {
-    if (game->win != NULL)
+	if (game->win != NULL)
 		mlx_destroy_window(game->mlx, game->win);
-    free_map(game->map.map);
-    system("leaks so_long");
+	free_map(game->map.map);
+	system("leaks so_long");
 	exit(0);
 }
 
-void    free_map(char **map)
+void	free_map(char **map)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (map[i] != NULL)
-    {
-        free(map[i]);
-        i++;
-    }
-    free(map);
+	i = 0;
+	while (map[i] != NULL)
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }

@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:11:04 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/22 14:49:41 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:18:21 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	move_player(t_data *game, t_direction *direction)
 	if (game->map.map[new_y][new_x] == 'E'
 		&& game->map.validity.goblin_count == 0)
 	{
-        ft_printf("FINAL SCORE: %d\n", game->player.count);
-        close_game(game);
+		ft_printf("FINAL SCORE: %d\n", game->player.count);
+		close_game(game);
 	}
 	if (game->map.map[new_y][new_x] == '0'
 		|| game->map.map[new_y][new_x] == 'C')

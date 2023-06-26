@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:46:02 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/22 15:19:01 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:18:06 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**allocate_map_memory(t_data *game, char **map, int col_i, char *line)
 	map[col_i] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (!map[col_i])
 		return (NULL);
-    map[game->map.map_height] = NULL;
+	map[game->map.map_height] = NULL;
 	return (map);
 }
 

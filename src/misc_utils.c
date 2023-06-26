@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extra_utils.c                                      :+:      :+:    :+:   */
+/*   misc_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:03:04 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/23 16:03:47 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:19:11 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,30 @@ void	invalid_map(t_data *game)
 {
 	ft_printf("Error: Invalid Map.\n");
 	close_game(game);
+}
+
+char	**copy_map(t_data *game)
+{
+	int		y;
+	int		x;
+	char	**map;
+
+	map = (char **)malloc((sizeof(char *) * (game->map.map_height + 1)));
+	if (!map)
+		return (NULL);
+	y = 0;
+	while (y < game->map.map_height)
+	{
+		x = 0;
+		map[y] = (char *)malloc(sizeof(char) * (game->map.map_width + 1));
+		while (x < game->map.map_width)
+		{
+			map[y][x] = game->map.map[y][x];
+			x++;
+		}
+		map[y][x] = '\0';
+		y++;
+	}
+	map[y] = NULL;
+	return (map);
 }
