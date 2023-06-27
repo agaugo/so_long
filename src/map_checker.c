@@ -66,9 +66,8 @@ int	check_path(t_data *game, char **map)
 				return (0);
 			else if (map[y][x] == 'E')
 			{
-				if (map[y][x + 1] != 'V' && map[y][x - 1] != 'V' && map[y
-					+ 1][x] != 'V' && map[y - 1][x])
-					return (0);
+                if (map[y][x + 1] != 'V' && map[y][x - 1] != 'V' && map[y + 1][x] != 'V' && map[y - 1][x] != 'V')
+                    return (0);
 			}
 			x++;
 		}
