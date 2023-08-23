@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:10:56 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/26 15:19:02 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:29:48 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ int	check_path(t_data *game, char **map)
 				return (0);
 			else if (map[y][x] == 'E')
 			{
-                if (map[y][x + 1] != 'V' && map[y][x - 1] != 'V' && map[y + 1][x] != 'V' && map[y - 1][x] != 'V')
-                    return (0);
+				if (map[y][x + 1] != 'V' && map[y][x - 1] != 'V' && map[y
+					+ 1][x] != 'V' && map[y - 1][x] != 'V')
+					return (0);
 			}
 			x++;
 		}

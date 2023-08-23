@@ -6,26 +6,12 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 14:46:02 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/26 19:02:50 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:11:55 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../get_next_line/get_next_line.h"
 #include "../include/so_long.h"
-
-char	**allocate_map_memory(t_data *game, char **map, int col_i, char *line)
-{
-	if (game->map.map_height <= col_i)
-	{
-		map = resize(map, game->map.map_height, game->map.map_height + 2);
-		game->map.map_height++;
-	}
-	map[col_i] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
-	if (!map[col_i])
-		return (NULL);
-	map[game->map.map_height] = NULL;
-	return (map);
-}
 
 void	parse_and_validate_line(t_data *game, char **map, char *line, int col_i)
 {
@@ -66,13 +52,11 @@ void	save_lines_two(t_data *game, char **map)
 	game->map.map = map;
 }
 
-int	parse_map(int fd, t_data *game)
+int	parse_map(int fd, t_data *game, int col_i)
 {
 	char	**map;
 	char	*line;
-	int		col_i;
 
-	col_i = 0;
 	save_lines(game);
 	line = get_next_line(fd);
 	if (line == NULL)

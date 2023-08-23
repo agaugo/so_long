@@ -38,7 +38,7 @@ int	main(int argc, char *argv[])
 	game.mlx = mlx_init();
 	game.win = NULL;
 	load_imgs(&game);
-	x = parse_map(fd, &game);
+	x = parse_map(fd, &game, 0);
 	if (x == -1)
 		return (read_error(2));
 	game.win = mlx_new_window(game.mlx, (game.map.map_width * IMG_SIZE),

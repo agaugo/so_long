@@ -6,7 +6,7 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 15:21:07 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/26 15:19:39 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/08/23 12:31:17 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,29 +80,29 @@ typedef struct s_data
 }				t_data;
 
 //  **** CORE **** //
-int				main(int argc, char *argv[]);
-int             parse_map(int fd, t_data *game);
-int				key_hook(int keycode, t_data *game);
-void			free_game(t_data *game);
-void			handle_movement(t_data *game, int direction);
-void			render_map(t_data *game);
-int				ft_printf(const char *flag_string, ...);
-int				close_game(t_data *game);
-int				read_map(t_data *game);
-int				check_map(t_data *game);
-void			flood_fill(t_data *game, char **map, int x, int y);
-int				check_path(t_data *game, char **map);
-void			load_imgs(t_data *game);
-void			*ft_memcpy(void *dst, const void *src, size_t n);
-char			**resize(char **ptr, int old_size, int new_size);
-void			invalid_map(t_data *game);
-void			save_lines(t_data *game);
-void			save_lines_two(t_data *game, char **map);
-void			assign_image(t_data *game, int row_i, int col_i);
-int				ft_strncmp(const char *s1, const char *s2, size_t n);
-char			**allocate_map_memory(t_data *game, char **map, int col_i,
-					char *line);
-void			free_map(char **map);
-char			**copy_map(t_data *game);
+int		main(int argc, char *argv[]);
+int		parse_map(int fd, t_data *game, int col_i);
+int		key_hook(int keycode, t_data *game);
+void	free_game(t_data *game);
+void	handle_movement(t_data *game, int direction);
+void	render_map(t_data *game);
+int		ft_printf(const char *flag_string, ...);
+int		close_game(t_data *game);
+int		read_map(t_data *game);
+int		check_map(t_data *game);
+void	flood_fill(t_data *game, char **map, int x, int y);
+int		check_path(t_data *game, char **map);
+void	load_imgs(t_data *game);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	**resize(char **ptr, int old_size, int new_size);
+void	invalid_map(t_data *game);
+void	save_lines(t_data *game);
+void	save_lines_two(t_data *game, char **map);
+void	assign_image(t_data *game, int row_i, int col_i);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	**allocate_map_memory(t_data *game, char **map, int col_i,
+			char *line);
+void	free_map(char **map);
+char	**copy_map(t_data *game);
 
 #endif

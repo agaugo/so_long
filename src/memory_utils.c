@@ -6,11 +6,12 @@
 /*   By: hflohil- <hflohil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 12:10:50 by hflohil-          #+#    #+#             */
-/*   Updated: 2023/06/26 15:18:13 by hflohil-         ###   ########.fr       */
+/*   Updated: 2023/08/23 13:12:24 by hflohil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
+#include "../get_next_line/get_next_line.h"
 
 char	**resize(char **ptr, int old_size, int new_size)
 {
@@ -61,4 +62,18 @@ void	free_map(char **map)
 		i++;
 	}
 	free(map);
+}
+
+char	**allocate_map_memory(t_data *game, char **map, int col_i, char *line)
+{
+	if (game->map.map_height <= col_i)
+	{
+		map = resize(map, game->map.map_height, game->map.map_height + 2);
+		game->map.map_height++;
+	}
+	map[col_i] = (char *)malloc(sizeof(char) * (ft_strlen(line) + 1));
+	if (!map[col_i])
+		return (NULL);
+	map[game->map.map_height] = NULL;
+	return (map);
 }
