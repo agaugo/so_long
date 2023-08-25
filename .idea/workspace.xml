@@ -18,11 +18,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76ae754c-0bd9-40c5-8def-52b724a2a097" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/so_long.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/so_long.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/map_checker.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/map_checker.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/map_parser.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/map_parser.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/memory_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/memory_utils.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/invalid/empt.ber" beforeDir="false" afterPath="$PROJECT_DIR$/maps/invalid/empt.ber" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/so_long.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/so_long.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +106,8 @@
       <workItem from="1692786275910" duration="188000" />
       <workItem from="1692786695900" duration="1177000" />
       <workItem from="1692792456032" duration="178000" />
-      <workItem from="1692794125938" duration="1570000" />
+      <workItem from="1692794125938" duration="1802000" />
+      <workItem from="1692970607320" duration="1369000" />
     </task>
     <servers />
   </component>
